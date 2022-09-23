@@ -1,18 +1,20 @@
 Feature: Login page feature
 
-Scenario: Login page title
-Given user is on login page
-When user gets the title of the page
-Then page title should be "Login - My Store"
+  @Login
+  Scenario: Forgot Password link
+    Given user is on login page
+    Then forgot your password link should be displayed
 
-Scenario: Forgot Password link
-Given user is on login page
-Then forgot your password link should be displayed
+  @Login
+  Scenario: Sign Up Password link
+    Given user is on login page
+    Then Sign up link should be displayed
 
-Scenario: Login with correct credentials
-Given user is on login page
-When user enters username "dec2020secondbatch@gmail.com"
-And user enters password "Selenium@12345"
-And user clicks on Login button
-Then user gets the title of the page
-And page title should be "My account - My Store"
+  @Login
+  Scenario: Login with correct credentials
+    Given user is on login page
+    When user enters username "jack123"
+    And user enters password "Admin@123"
+    And user clicks on Login button
+    Then user gets the title of the page
+    And page title should be "Shibnobi Play"

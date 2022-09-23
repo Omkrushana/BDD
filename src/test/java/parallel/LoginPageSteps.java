@@ -16,9 +16,13 @@ public class LoginPageSteps {
 
 	@Given("user is on login page")
 	public void user_is_on_login_page() {
+		DriverFactory.getDriver().get("https://devplay.shibnobi.com/user/login");
 
-		DriverFactory.getDriver()
-				.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+	}
+
+	@Then("forgot your password link should be displayed")
+	public void forgot_your_password_link_should_be_displayed() {
+		Assert.assertTrue(loginPage.isForgotPwdLinkExist());
 	}
 
 	@When("user gets the title of the page")
@@ -30,11 +34,6 @@ public class LoginPageSteps {
 	@Then("page title should be {string}")
 	public void page_title_should_be(String expectedTitleName) {
 		Assert.assertTrue(title.contains(expectedTitleName));
-	}
-
-	@Then("forgot your password link should be displayed")
-	public void forgot_your_password_link_should_be_displayed() {
-		Assert.assertTrue(loginPage.isForgotPwdLinkExist());
 	}
 
 	@When("user enters username {string}")
@@ -52,5 +51,8 @@ public class LoginPageSteps {
 		loginPage.clickOnLogin();
 	}
 
+	@Then("Sign up link should be displayed")
+	public void sign_up_link_should_be_displayed() {
 
+	}
 }

@@ -8,10 +8,11 @@ public class LoginPage {
 	private WebDriver driver;
 
 	// 1. By Locators: OR
-	private By emailId = By.id("email");
-	private By password = By.id("passwd");
-	private By signInButton = By.id("SubmitLogin");
-	private By forgotPwdLink = By.linkText("Forgot your password?111");
+	private By userName = By.xpath("//*[@id=\"__next\"]/div/div/div/div/div[3]/form/div[1]/input");
+	private By password = By.xpath("//*[@id=\"__next\"]/div/div/div/div/div[3]/form/div[2]/div[1]/input");
+	private By loginBtn = By.xpath("//*[@id=\"__next\"]/div/div/div/div/div[3]/form/button");
+	private By signUpLink = By.xpath("//*[@id=\"__next\"]/div/div/div/div/div[3]/form/div[5]/a");
+	private By forgotPwdLink = By.xpath("//*[@id=\"__next\"]/div/div/div/div/div[3]/form/div[3]");
 
 	// 2. Constructor of the page class:
 	public LoginPage(WebDriver driver) {
@@ -29,7 +30,7 @@ public class LoginPage {
 	}
 
 	public void enterUserName(String username) {
-		driver.findElement(emailId).sendKeys(username);
+		driver.findElement(userName).sendKeys(username);
 	}
 
 	public void enterPassword(String pwd) {
@@ -37,14 +38,18 @@ public class LoginPage {
 	}
 
 	public void clickOnLogin() {
-		driver.findElement(signInButton).click();
+		driver.findElement(loginBtn).click();
 	}
 
+	public boolean isSignUpLinkExist() {
+		return driver.findElement(signUpLink).isDisplayed();
+	}
+	
 	public AccountsPage doLogin(String un, String pwd) {
 		System.out.println("login with: " + un + " and " + pwd);
-		driver.findElement(emailId).sendKeys(un);
+		driver.findElement(userName).sendKeys(un);
 		driver.findElement(password).sendKeys(pwd);
-		driver.findElement(signInButton).click();
+		driver.findElement(loginBtn).click();
 		return new AccountsPage(driver);
 	}
 
